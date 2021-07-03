@@ -1,6 +1,6 @@
 name: Pull Request
 
-on: [push]
+on: [pull_request]
 
 jobs:
 
@@ -33,14 +33,7 @@ jobs:
     - name: Run Gradle build
       run: ./gradlew build
 
-    - name: Run Android Lint
-      uses: dvdandroid/action-android-lint@master
-      with:
-        github_token: ${{ secrets.TOKEN_GITHUB }}
-        lint_xml_file: app/build/reports/lint-results.xml
-        reporter: github-pr-check
-
-    - name: Run Kotlin Linter
+    - name: Run Linter
       uses: ScaCap/action-ktlint@master
       with:
         github_token: ${{ secrets.github_token }}
